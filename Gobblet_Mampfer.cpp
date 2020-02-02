@@ -10,15 +10,16 @@
 
 int main()
 {
-    std::cout << "Hello World!\n";
 	Bot_Brain Brain;
 	Game_Field gobblet;
 
-	auto acts = gobblet.possibleActions(-1);
+	auto acts = gobblet.possibleActions(1);
 
-	for (int i = 0; i < acts.size(); i++) {
-		std::cout << std::get<0>(acts[i].location);
-	}
+	gobblet.printField();
+
+	gobblet.setField(acts[0]);
+
+	gobblet.printField();
 	
 }
 

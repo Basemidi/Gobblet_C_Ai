@@ -1,5 +1,5 @@
 #include "Game_Field.h"
-
+#include <iostream>
 
 
 Game_Field::Game_Field()
@@ -133,4 +133,13 @@ int Game_Field::checkForWin()
 void Game_Field::printField()
 {
 	//TODO: Implement printField function.
+
+	for (int row = 0; row < 5; row++) {
+		
+		std::cout << "     " << game_fields[row][0].back() << "|" << game_fields[row][1].back() << "|" << game_fields[row][2].back() << endl;
+
+		if (row < 4) {
+			std::cout << "   ----------" << endl;
+		}
+	}
 }
