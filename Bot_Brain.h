@@ -10,12 +10,12 @@ class Bot_Brain
 		int rolloutcount = 10;
 		int player;
 
+		int getsimucount();
+		int getrolloutcount();
+
 	public:
 		Bot_Brain(int pla = 1);
 		~Bot_Brain();
-
-		int getsimucount();
-		int getrolloutcount();
 
 		action makeRndMove();
 		action think();

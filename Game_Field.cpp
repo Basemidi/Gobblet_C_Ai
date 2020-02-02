@@ -133,6 +133,8 @@ int Game_Field::checkForWin()
 void Game_Field::printField()
 {
 	//TODO: Implement printField function.
+	std::cout << "Round:" << roundcount << endl;
+	std::cout << endl;
 
 	for (int row = 0; row < 5; row++) {
 		
@@ -142,4 +144,5 @@ void Game_Field::printField()
 			std::cout << "   ----------" << endl;
 		}
 	}
+	std::cout << endl;
 }
