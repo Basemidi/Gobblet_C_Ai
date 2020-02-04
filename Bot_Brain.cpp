@@ -21,6 +21,15 @@ int Bot_Brain::getrolloutcount()
 	return rolloutcount;
 }
 
+Game_Field Bot_Brain::descent(Game_Field gam)//This should also copy the Object.
+{
+	Game_Field copygam = gam; //TODO: Is this a copy now?
+
+
+
+	return Game_Field();
+}
+
 action Bot_Brain::makeRndMove()
 {
 	action act = action(0, 1, 2, 3);

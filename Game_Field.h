@@ -28,5 +28,6 @@ class Game_Field
 		vector<action> possibleActions(int play);
 		int checkForWin();
 		void printField();
+		string stateRepresentation();
 };
 

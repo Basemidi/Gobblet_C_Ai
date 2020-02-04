@@ -1,6 +1,6 @@
 #include "Game_Field.h"
 #include <iostream>
-
+#include <String>
 
 Game_Field::Game_Field()
 {
@@ -145,4 +145,20 @@ void Game_Field::printField()
 		}
 	}
 	std::cout << endl;
+}
+
+string Game_Field::stateRepresentation()
+{
+
+	string stateString;
+
+	for (int row = 0; row < 5; row++) {
+		for (int col = 0; col < 3; col++) {
+			for (int field = 0; field < 3; field++) {
+				stateString.append(std::to_string(game_fields[row][col][field]));
+			}
+		}
+	}
+
+	return stateString;
 }
