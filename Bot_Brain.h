@@ -23,14 +23,16 @@ class Bot_Brain
 		float UCB1(Game_Field gamf);
 
 		Game_Field descent(Game_Field gam);
-
+		void expansion(Game_Field gam);
+		Game_Field rollout(Game_Field gam);
+		void backPropagation(Game_Field gam);
 
 	public:
 		Bot_Brain(int pla = 1);
 		~Bot_Brain();
 
-		action makeRndMove();
-		action think();
+		action makeRndMove(Game_Field gam);
+		action think(Game_Field gam);
 
 
 };

@@ -13,9 +13,12 @@ int main()
 	Bot_Brain Brain;
 	Game_Field gobblet;
 
-	auto acts = gobblet.possibleActions(1);
-
 	gobblet.printField();
+
+	while (gobblet.checkForWin() == 0) {
+		gobblet.setField(Brain.makeRndMove(gobblet));
+		gobblet.printField();
+	}
 	
 }
 

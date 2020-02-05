@@ -1,6 +1,7 @@
 #pragma once
 #include"action.cpp"
 #include<vector>
+#include <String>
 
 class Game_Field
 {
@@ -14,6 +15,7 @@ class Game_Field
 		bool player1 = true;
 		bool player2 = false;
 		bool gamestate = true;
+		void setPlayer();
 
 	public:
 		Game_Field();
@@ -21,13 +23,12 @@ class Game_Field
 
 		int getField(int row, int collumn);
 		void setField(action act);
-		void setPlayer(int pla);
 		bool getState();
 		int whichPlayer();
 
-		vector<action> possibleActions(int play);
+		vector<action> possibleActions();
 		int checkForWin();
 		void printField();
-		string stateRepresentation();
+		std::string stateRepresentation();
 };
 

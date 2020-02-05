@@ -25,17 +25,19 @@ void Game_Field::setField(action act)
 
 	game_fields[get<0>(act.location)][get<1>(act.location)].pop_back();
 
+	setPlayer();
+
 }
 
-void Game_Field::setPlayer(int pla)
+void Game_Field::setPlayer()
 {
-	if (pla == 1) {
-		player1 = true;
-		player2 = false;
-	}
-	else {
+	if (player1) {
 		player1 = false;
 		player2 = true;
+	}
+	else if(player2){
+		player1 = true;
+		player2 = false;
 	}
 }
 
@@ -54,10 +56,10 @@ int Game_Field::whichPlayer()
 	}
 }
 
-vector<action> Game_Field::possibleActions(int play)
+vector<action> Game_Field::possibleActions()
 {	
 	vector <action> act;
-	if (play == 1) {
+	if (player1) {
 		for (int row = 0; row < 4; row++) {
 			for (int col = 0; col < 3; col++) {
 				if (game_fields[row][col].back() > 0) {
@@ -73,7 +75,7 @@ vector<action> Game_Field::possibleActions(int play)
 			}
 		}
 	}
-	else if (play == -1) {
+	else if (player2) {
 		for (int row = 1; row < 5; row++) {
 			for (int col = 0; col < 3; col++) {
 				if (game_fields[row][col].back() < 0) {
@@ -149,7 +151,6 @@ void Game_Field::printField()
 
 string Game_Field::stateRepresentation()
 {
-
 	string stateString;
 
 	for (int row = 0; row < 5; row++) {
