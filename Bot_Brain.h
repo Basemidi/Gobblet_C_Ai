@@ -11,6 +11,8 @@ class Bot_Brain
 {	private:
 		int simulationCount = 50000;
 		int rolloutcount = 10;
+		float explore = 0.5;
+		vector<string> path;
 		int player;
 
 		std::map<string, int> Q_value;
@@ -18,6 +20,7 @@ class Bot_Brain
 
 		int getsimucount();
 		int getrolloutcount();
+		float UCB1(Game_Field gamf);
 
 		Game_Field descent(Game_Field gam);
 

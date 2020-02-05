@@ -16,10 +16,6 @@ int main()
 	auto acts = gobblet.possibleActions(1);
 
 	gobblet.printField();
-
-	gobblet.setField(acts[0]);
-
-	gobblet.printField();
 	
 }
 
