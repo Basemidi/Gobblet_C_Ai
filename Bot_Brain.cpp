@@ -6,6 +6,7 @@
 #include <iterator>
 #include <algorithm>
 #include <stdlib.h>
+#include <iostream>
 //This class is used for the artificial Player
 
 Bot_Brain::Bot_Brain(int pla)
@@ -130,7 +131,32 @@ action Bot_Brain::makeRndMove(Game_Field gam)
 
 action Bot_Brain::think(Game_Field gam)
 {
-	action act = action(0, 1, 2, 3);
+	
+	for (int iter = 0; iter < simulationCount; iter++) {
 
-	return act;
+		Game_Field newgam = descent(gam);
+		expansion(newgam);
+		Game_Field donegam = rollout(newgam);
+		backPropagation(donegam);
+	}
+
+	vector<action> poschild = gam.possibleActions();
+	vector<int> Ucb_vals;
+	vector<int> Qvalues;
+
+	
+	for (int i = 0; i < static_cast<int>(poschild.size()); i++) {
+		Game_Field newgam = gam;
+		newgam.setField(poschild[i]);
+
+		Ucb_vals.push_back(N_value[newgam.stateRepresentation()]);
+		Qvalues.push_back(Q_value[newgam.stateRepresentation()]);
+
+	}
+
+	int maxindex = distance(Ucb_vals.begin(), max_element(Ucb_vals.begin(), Ucb_vals.end()));
+
+	std::cout << (Qvalues[maxindex] / Ucb_vals[maxindex]);
+
+	return poschild[maxindex];
 }

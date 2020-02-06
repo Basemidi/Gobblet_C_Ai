@@ -5,6 +5,9 @@
 #include <tuple>
 #include <vector>
 #include <iostream>
+#include <stdlib.h>
+#include <iterator>
+#include <algorithm>
 #include "Bot_Brain.h"
 #include "Game_Field.h"
 
@@ -15,11 +18,13 @@ int main()
 
 	gobblet.printField();
 
-	while (gobblet.checkForWin() == 0) {
+
+	/*while (gobblet.checkForWin() == 0) {
+		gobblet.setField(Brain.think(gobblet));
+		gobblet.printField();
 		gobblet.setField(Brain.makeRndMove(gobblet));
 		gobblet.printField();
-	}
-	
+	}	*/
 }
 
 // Programm ausführen: STRG+F5 oder "Debuggen" > Menü "Ohne Debuggen starten"
