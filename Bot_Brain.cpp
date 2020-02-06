@@ -42,11 +42,11 @@ Game_Field Bot_Brain::descent(Game_Field gam)
 {
 	//TODO: Something seems wrong with the map.
 
+	path.push_back(gam.stateRepresentation());
+
 	if ((N_value.find(gam.stateRepresentation()) == N_value.end()) || gam.checkForWin() != 0) {
 		return gam;
 	}
-
-	path.push_back(gam.stateRepresentation());
 	
 
 	while(true){
@@ -96,7 +96,7 @@ Game_Field Bot_Brain::rollout(Game_Field gam)
 {
 	while (gam.checkForWin() == 0) {
 		vector<action> children = gam.possibleActions();
-		gam.setField(children[rand() % children.size()]);
+		gam.setField(children[rand() % static_cast<int>(children.size())]);
 	}
 	return gam;
 }
@@ -118,7 +118,6 @@ void Bot_Brain::backPropagation(Game_Field gam)
 		N_value[path[item]] += 1;
 
 		reward = 1 - reward;
-		pla *= -1;
 	}
 }
 
@@ -158,7 +157,7 @@ action Bot_Brain::think(Game_Field gam)
 
 	int maxindex = distance(Ucb_vals.begin(), max_element(Ucb_vals.begin(), Ucb_vals.end()));
 
-	std::cout << to_string((static_cast<float>(Qvalues[maxindex]) / static_cast<float>(Ucb_vals[maxindex])));
+	std::cout << to_string((static_cast<float>(Qvalues[maxindex]) / static_cast<float>(Ucb_vals[maxindex]))) << endl;
 
 	return poschild[maxindex];
 }
