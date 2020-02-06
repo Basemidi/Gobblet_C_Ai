@@ -96,6 +96,7 @@ vector<action> Game_Field::possibleActions()
 
 int Game_Field::checkForWin()
 {
+	//TODO: Something is wrong here!
 	for (int row = 1; row < 4; row++) {
 
 		if (game_fields[row][0].back() > 0 && game_fields[row][1].back() > 0 && game_fields[row][2].back()) {
@@ -134,7 +135,6 @@ int Game_Field::checkForWin()
 
 void Game_Field::printField()
 {
-	//TODO: Implement printField function.
 	std::cout << "Round:" << roundcount << endl;
 	std::cout << endl;
 

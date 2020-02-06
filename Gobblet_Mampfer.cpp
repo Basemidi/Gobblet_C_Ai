@@ -10,6 +10,7 @@
 #include <algorithm>
 #include "Bot_Brain.h"
 #include "Game_Field.h"
+#include <random>
 
 int main()
 {
@@ -17,6 +18,7 @@ int main()
 	Game_Field gobblet;
 	
 	gobblet.printField();
+
 	while (gobblet.checkForWin() == 0) {
 		gobblet.setField(Brain.think(gobblet));
 		gobblet.printField();

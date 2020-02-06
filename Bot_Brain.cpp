@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <stdlib.h>
 #include <iostream>
+#include <random>
 //This class is used for the artificial Player
 
 Bot_Brain::Bot_Brain(int pla)
@@ -40,14 +41,12 @@ float Bot_Brain::UCB1(Game_Field gamf)
 
 Game_Field Bot_Brain::descent(Game_Field gam)
 {
-	//TODO: Something seems wrong with the map.
 
 	path.push_back(gam.stateRepresentation());
 
 	if ((N_value.find(gam.stateRepresentation()) == N_value.end()) || gam.checkForWin() != 0) {
 		return gam;
 	}
-	
 
 	while(true){
 		vector<action> children = gam.possibleActions();
@@ -94,9 +93,13 @@ void Bot_Brain::expansion(Game_Field gam)
 
 Game_Field Bot_Brain::rollout(Game_Field gam)
 {
+	std::random_device rd;
+	std::mt19937 eng(rd());
+
 	while (gam.checkForWin() == 0) {
 		vector<action> children = gam.possibleActions();
-		gam.setField(children[rand() % static_cast<int>(children.size())]);
+		std::uniform_int_distribution<int> distr(0, (static_cast<int>(children.size()) - 1));
+		gam.setField(children[distr(eng)]);
 	}
 	return gam;
 }
@@ -107,10 +110,10 @@ void Bot_Brain::backPropagation(Game_Field gam)
 	int reward;
 
 	if (gam.checkForWin() == player) {
-		reward = 1;
+		reward = 0;
 	}
 	else {
-		reward = 0;
+		reward = 1;
 	}
 
 	for (int item = 0; item < static_cast<int>(path.size()); item++) {
@@ -123,10 +126,14 @@ void Bot_Brain::backPropagation(Game_Field gam)
 
 action Bot_Brain::makeRndMove(Game_Field gam)
 {
+	
+	std::random_device rd;
+	std::mt19937 eng(rd());
+	
 	vector<action> child = gam.possibleActions();
+	std::uniform_int_distribution<> distr(0, (static_cast<int>(child.size()) - 1));
 
-
-	return child[rand() % child.size()];
+	return child[distr(eng)];
 }
 
 action Bot_Brain::think(Game_Field gam)
