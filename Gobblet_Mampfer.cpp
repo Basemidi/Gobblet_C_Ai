@@ -15,16 +15,14 @@ int main()
 {
 	Bot_Brain Brain;
 	Game_Field gobblet;
-
+	
 	gobblet.printField();
-
-
-	/*while (gobblet.checkForWin() == 0) {
+	while (gobblet.checkForWin() == 0) {
 		gobblet.setField(Brain.think(gobblet));
 		gobblet.printField();
 		gobblet.setField(Brain.makeRndMove(gobblet));
 		gobblet.printField();
-	}	*/
+	}	
 }
 
 // Programm ausführen: STRG+F5 oder "Debuggen" > Menü "Ohne Debuggen starten"

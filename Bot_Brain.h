@@ -9,7 +9,7 @@ using namespace std;
 
 class Bot_Brain
 {	private:
-		int simulationCount = 50000;
+		int simulationCount = 50;
 		int rolloutcount = 10;
 		float explore = 0.5;
 		vector<string> path;
@@ -34,6 +34,6 @@ class Bot_Brain
 		action makeRndMove(Game_Field gam);
 		action think(Game_Field gam);
 
-
+		void test(Game_Field tes);
 };
 

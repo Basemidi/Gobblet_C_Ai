@@ -38,10 +38,9 @@ float Bot_Brain::UCB1(Game_Field gamf)
 
 }
 
-Game_Field Bot_Brain::descent(Game_Field gam)//This should also copy the Object.
+Game_Field Bot_Brain::descent(Game_Field gam)
 {
-	//Game_Field copygam = gam; //TODO: Is this a copy now?
-
+	//TODO: Something seems wrong with the map.
 
 	if ((N_value.find(gam.stateRepresentation()) == N_value.end()) || gam.checkForWin() != 0) {
 		return gam;
@@ -56,16 +55,18 @@ Game_Field Bot_Brain::descent(Game_Field gam)//This should also copy the Object.
 
 		for (int num = 0; num < static_cast<int>(children.size()); num++) {
 			Game_Field copygam = gam;
+
 			copygam.setField(children[num]);
 
 			if (N_value.find(copygam.stateRepresentation()) == N_value.end()) {
+
 				return copygam;
 			}
 			else {
 				UCB_values.push_back(UCB1(copygam));
 			}
 		}
-
+		
 		action bestaction = children[distance(UCB_values.begin(), max_element(UCB_values.begin(), UCB_values.end()))];
 
 		gam.setField(bestaction);
@@ -84,8 +85,8 @@ void Bot_Brain::expansion(Game_Field gam)
 		return;
 	}
 	else {
-		N_value[gam.stateRepresentation()] = 0;
-		Q_value[gam.stateRepresentation()] = 0;
+		N_value.insert({gam.stateRepresentation() , 0});
+		Q_value.insert({gam.stateRepresentation() , 0});
 	}
 
 	return;
@@ -138,6 +139,7 @@ action Bot_Brain::think(Game_Field gam)
 		expansion(newgam);
 		Game_Field donegam = rollout(newgam);
 		backPropagation(donegam);
+		std::cout << "Thinking:" << to_string((static_cast<float>(iter) / static_cast<float>(simulationCount)) * 100.0f) << "%" << "\r";
 	}
 
 	vector<action> poschild = gam.possibleActions();
@@ -156,7 +158,12 @@ action Bot_Brain::think(Game_Field gam)
 
 	int maxindex = distance(Ucb_vals.begin(), max_element(Ucb_vals.begin(), Ucb_vals.end()));
 
-	std::cout << (Qvalues[maxindex] / Ucb_vals[maxindex]);
+	std::cout << to_string((static_cast<float>(Qvalues[maxindex]) / static_cast<float>(Ucb_vals[maxindex])));
 
 	return poschild[maxindex];
+}
+
+void Bot_Brain::test(Game_Field tes)
+{
+
 }
