@@ -151,6 +151,7 @@ action Bot_Brain::think(Game_Field gam)
 			Game_Field donegam = rollout(newgam);
 			backPropagation(donegam);
 		}
+		path.clear();
 		std::cout << "Thinking:" << to_string((static_cast<float>(iter) / static_cast<float>(simulationCount)) * 100.0f) << "%" << "\r";
 	}
 

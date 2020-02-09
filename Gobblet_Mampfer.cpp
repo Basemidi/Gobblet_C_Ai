@@ -22,6 +22,9 @@ int main()
 	while (gobblet.checkForWin() == 0) {
 		gobblet.setField(Brain.think(gobblet));
 		gobblet.printField();
+		if (gobblet.checkForWin() != 0) {
+			break;
+		}
 		gobblet.setField(Brain.makeRndMove(gobblet));
 		gobblet.printField();
 	}
