@@ -35,7 +35,7 @@ float Bot_Brain::UCB1(Game_Field gamf)
 	float x = (static_cast<float>(Q_value[gamf.stateRepresentation()]) / static_cast<float>(N_value[gamf.stateRepresentation()]));
 	float ro = sqrt((log(static_cast<float>(N_value[path.back()])) / static_cast<float>(N_value[gamf.stateRepresentation()])));
 
-	return  x + explore * ro;
+	return  x + (explore * ro);
 
 }
 
@@ -75,7 +75,6 @@ Game_Field Bot_Brain::descent(Game_Field gam)
 			return gam;
 		}
 	}
-	return gam;
 }
 
 void Bot_Brain::expansion(Game_Field gam)
@@ -93,6 +92,10 @@ void Bot_Brain::expansion(Game_Field gam)
 
 Game_Field Bot_Brain::rollout(Game_Field gam)
 {
+	if (gam.checkForWin() != 0) {
+		return gam;
+	}
+
 	std::random_device rd;
 	std::mt19937 eng(rd());
 
@@ -143,13 +146,16 @@ action Bot_Brain::think(Game_Field gam)
 
 		Game_Field newgam = descent(gam);
 		expansion(newgam);
-		Game_Field donegam = rollout(newgam);
-		backPropagation(donegam);
+
+		for (int roll = 0; roll < rolloutcount; roll++) {
+			Game_Field donegam = rollout(newgam);
+			backPropagation(donegam);
+		}
 		std::cout << "Thinking:" << to_string((static_cast<float>(iter) / static_cast<float>(simulationCount)) * 100.0f) << "%" << "\r";
 	}
 
 	vector<action> poschild = gam.possibleActions();
-	vector<int> Ucb_vals;
+	vector<int> Nvals;
 	vector<int> Qvalues;
 
 	
@@ -157,14 +163,14 @@ action Bot_Brain::think(Game_Field gam)
 		Game_Field newgam = gam;
 		newgam.setField(poschild[i]);
 
-		Ucb_vals.push_back(N_value[newgam.stateRepresentation()]);
+		Nvals.push_back(N_value[newgam.stateRepresentation()]);
 		Qvalues.push_back(Q_value[newgam.stateRepresentation()]);
 
 	}
 
-	int maxindex = distance(Ucb_vals.begin(), max_element(Ucb_vals.begin(), Ucb_vals.end()));
+	int maxindex = distance(Nvals.begin(), max_element(Nvals.begin(), Nvals.end()));
 
-	std::cout << to_string((static_cast<float>(Qvalues[maxindex]) / static_cast<float>(Ucb_vals[maxindex]))) << endl;
+	std::cout << to_string((static_cast<float>(Qvalues[maxindex]) / static_cast<float>(Nvals[maxindex]))) << endl;
 
 	return poschild[maxindex];
 }
