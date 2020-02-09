@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <random>
-//This class is used for the artificial Player
+//This class is used for the artificial Player test one two.
 
 Bot_Brain::Bot_Brain(int pla)
 {
