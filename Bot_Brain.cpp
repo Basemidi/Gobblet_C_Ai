@@ -58,7 +58,7 @@ Game_Field Bot_Brain::descent(Game_Field gam)
 			copygam.setField(children[num]);
 
 			if (N_value.find(copygam.stateRepresentation()) == N_value.end()) {
-
+				path.push_back(copygam.stateRepresentation());
 				return copygam;
 			}
 			else {

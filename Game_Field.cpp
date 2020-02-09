@@ -99,34 +99,34 @@ int Game_Field::checkForWin()
 	//TODO: Something is wrong here!
 	for (int row = 1; row < 4; row++) {
 
-		if (game_fields[row][0].back() > 0 && game_fields[row][1].back() > 0 && game_fields[row][2].back()) {
+		if (game_fields[row][0].back() > 0 && game_fields[row][1].back() > 0 && game_fields[row][2].back() > 0) {
 			return 1;
 		}
-		else if (game_fields[row][0].back() < 0 && game_fields[row][1].back() < 0 && game_fields[row][2].back()) {
+		else if (game_fields[row][0].back() < 0 && game_fields[row][1].back() < 0 && game_fields[row][2].back() < 0) {
 			return -1;
 		}
 	}
 
 	for (int col = 0; col < 3; col++) {
 
-		if (game_fields[1][col].back() > 0 && game_fields[2][col].back() > 0 && game_fields[3][col].back()) {
+		if (game_fields[1][col].back() > 0 && game_fields[2][col].back() > 0 && game_fields[3][col].back() > 0) {
 			return 1;
 		}
-		else if (game_fields[1][col].back() < 0 && game_fields[2][col].back() < 0 && game_fields[3][col].back()) {
+		else if (game_fields[1][col].back() < 0 && game_fields[2][col].back() < 0 && game_fields[3][col].back() < 0) {
 			return -1;
 		}
 	}
 
-	if (game_fields[1][0].back() > 0 && game_fields[2][1].back() > 0 && game_fields[3][2].back()) {
+	if (game_fields[1][0].back() > 0 && game_fields[2][1].back() > 0 && game_fields[3][2].back() > 0) {
 		return 1;
 	}
-	else if (game_fields[1][0].back() < 0 && game_fields[2][1].back() < 0 && game_fields[3][2].back()) {
+	else if (game_fields[1][0].back() < 0 && game_fields[2][1].back() < 0 && game_fields[3][2].back() < 0) {
 		return -1;
 	}
-	else if (game_fields[1][2].back() > 0 && game_fields[2][1].back() > 0 && game_fields[3][0].back()) {
+	else if (game_fields[1][2].back() > 0 && game_fields[2][1].back() > 0 && game_fields[3][0].back() > 0) {
 		return 1;
 	}
-	else if (game_fields[1][2].back() < 0 && game_fields[2][1].back() < 0 && game_fields[3][0].back()) {
+	else if (game_fields[1][2].back() < 0 && game_fields[2][1].back() < 0 && game_fields[3][0].back() < 0) {
 		return -1;
 	}
 

@@ -24,7 +24,8 @@ int main()
 		gobblet.printField();
 		gobblet.setField(Brain.makeRndMove(gobblet));
 		gobblet.printField();
-	}	
+	}
+	std::cout << to_string(gobblet.checkForWin()) << endl;
 }
 
 // Programm ausführen: STRG+F5 oder "Debuggen" > Menü "Ohne Debuggen starten"
