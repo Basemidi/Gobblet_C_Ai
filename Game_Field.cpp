@@ -12,7 +12,7 @@ Game_Field::~Game_Field()
 }
 
 int Game_Field::getField(int row, int collumn)
-{	//TODO: Does this copy the number ?
+{
 	return game_fields[row][collumn].back();
 }
 
