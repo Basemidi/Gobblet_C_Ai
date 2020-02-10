@@ -11,13 +11,16 @@
 #include "Bot_Brain.h"
 #include "Game_Field.h"
 #include <random>
+#include "IO_controller.h"
 
 int main()
 {
 	Bot_Brain Brain;
+	IO_controller human;
 	Game_Field gobblet;
 	
 	gobblet.printField();
+
 
 	while (gobblet.checkForWin() == 0) {
 		gobblet.setField(Brain.think(gobblet));
@@ -25,7 +28,7 @@ int main()
 		if (gobblet.checkForWin() != 0) {
 			break;
 		}
-		gobblet.setField(Brain.makeRndMove(gobblet));
+		gobblet.setField(human.get_Input(gobblet));
 		gobblet.printField();
 	}
 	std::cout << to_string(gobblet.checkForWin()) << endl;

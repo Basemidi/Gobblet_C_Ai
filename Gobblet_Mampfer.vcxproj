@@ -155,10 +155,12 @@
     <ClCompile Include="Game_Field.cpp" />
     <ClCompile Include="Gobblet_Mampfer.cpp" />
     <ClCompile Include="action.cpp" />
+    <ClCompile Include="IO_controller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bot_Brain.h" />
     <ClInclude Include="Game_Field.h" />
+    <ClInclude Include="IO_controller.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

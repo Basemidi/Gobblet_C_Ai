@@ -62,7 +62,10 @@ Game_Field Bot_Brain::descent(Game_Field gam)
 				return copygam;
 			}
 			else {
-				UCB_values.push_back(UCB1(copygam));
+				if (std::find(path.begin(),path.end(), copygam.stateRepresentation()) == path.end()) {
+					UCB_values.push_back(UCB1(copygam));
+				}
+				
 			}
 		}
 		
