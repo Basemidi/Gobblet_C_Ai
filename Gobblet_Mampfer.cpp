@@ -1,5 +1,3 @@
-// Gobblet_Mampfer.cpp : Diese Datei enthält die Funktion "main". Hier beginnt und endet die Ausführung des Programms.
-//
 
 #pragma once
 #include <tuple>
@@ -12,7 +10,13 @@
 #include "Game_Field.h"
 #include <random>
 #include "IO_controller.h"
+/*
+Main class. Creates a Bot_Brain object a Game_Field object and a IO_controller object. As long as the game is not over the Game_Field gets actions from the AI and the human player.
 
+@var Brain: Bot_Brain object represents the AI.
+@var human: IO_controller object is used for the human input.
+@var gobblet: Game_Field object represents the game.
+*/
 int main()
 {
 	Bot_Brain Brain;
@@ -39,7 +43,7 @@ int main()
 
 // Tipps für den Einstieg: 
 //   1. Verwenden Sie das Projektmappen-Explorer-Fenster zum Hinzufügen/Verwalten von Dateien.
-//   2. Verwenden Sie das Team Explorer-Fenster zum Herstellen einer Verbindung mit der Quellcodeverwaltung.
+//   2. Verwend^en Sie das Team Explorer-Fenster zum Herstellen einer Verbindung mit der Quellcodeverwaltung.
 //   3. Verwenden Sie das Ausgabefenster, um die Buildausgabe und andere Nachrichten anzuzeigen.
 //   4. Verwenden Sie das Fenster "Fehlerliste", um Fehler anzuzeigen.
 //   5. Wechseln Sie zu "Projekt" > "Neues Element hinzufügen", um neue Codedateien zu erstellen, bzw. zu "Projekt" > "Vorhandenes Element hinzufügen", um dem Projekt vorhandene Codedateien hinzuzufügen.

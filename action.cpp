@@ -2,7 +2,17 @@
 #include <tuple>
 #include <vector>
 using namespace std;
+/*
+The action construt represents a game action.
+It contains two board positions, location and target.
+These positions itself store the row and collumn number of the board position.
 
+@var location: tuple containing row and collumn number.
+@var target: tuple containing row and collumn number.
+
+@constr action: creates the Tuples based on the given coordinates.
+@oper == : compares the location and target of two actions.
+*/
 struct action {
 
 	tuple <int, int> location;
